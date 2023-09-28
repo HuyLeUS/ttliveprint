@@ -1,0 +1,63 @@
+
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title TikTok LIVE Chat Reader (Demo)
+  meta(name='description' content='A chat reader for TikTok LIVE utilizing TikTok-Live-Connector and Socket.IO to forward the data to the client. This demo project uses the unofficial TikTok API to retrieve chat comments, gifts and other events from TikTok LIVE.')
+  meta(name='keywords' content='TikTok,Live,Livestream,Chat,Reader,Scraper,Tracker,tiktok.com,broadcast,api,library,node,node.js,javascript')
+  link(rel='stylesheet' href='style.css')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js' crossorigin='anonymous' referrerpolicy='no-referrer')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js' crossorigin='anonymous' referrerpolicy='no-referrer')
+  script(src='connection.js')
+  script(src='app.js')
+  script.
+    function generateOverlay() {
+    let username = $('#uniqueIdInput').val();
+    let url = `/obs.html?username=${username}&showLikes=1&showChats=1&showGifts=1&showFollows=1&showJoins=1&bgColor=rgb(24,23,28)&fontColor=rgb(227,229,235)&fontSize=1.3em`;
+    if(username) {
+    window.open(url, '_blank');
+    } else {
+    alert("Enter username");
+    }
+    }
+.head
+  h1 TikTok LIVE Chat Reader
+  span.subTitle
+    | Source: 
+    a(href='https://github.com/zerodytrash/TikTok-Chat-Reader') https://github.com/zerodytrash/TikTok-Chat-Reader
+div
+  | A chat reader for 
+  a(href='https://www.tiktok.com/live') TikTok LIVE
+  |  utilizing 
+  a(href='https://github.com/zerodytrash/TikTok-Live-Connector') TikTok-Live-Connector
+  |  and 
+  a(href='https://socket.io/') Socket.IO
+  |  to forward the data to the client. More Tools available at 
+  a(href='https://tikfinity.zerody.one/' target='_blank') TikFinity
+  | .
+.inputFields
+  p
+    | Enter the 
+    b @username
+    |  of a user who is currently live:
+  input#uniqueIdInput(type='text')
+  input#connectButton(type='button' value='connect')
+  a(href='#' onclick='generateOverlay()') Generate Overlay URL
+table.splitstatetable
+  tr
+    td
+      pre#stateText.
+        
+    td
+      #roomStats
+table.splitchattable
+  tr
+    td
+      .chatcontainer
+        h3.containerheader Chats
+    td
+      .giftcontainer
+        h3.containerheader Gifts
+
